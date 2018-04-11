@@ -188,11 +188,17 @@ func configFromEnv(vargs *GAE, workspace *string) error {
 	// drone plugin input format du jour:
 	// http://readme.drone.io/plugins/plugin-parameters/
 
+	// Credential
+	token, ok := os.LookupEnv("GOOGLE_CREDENTIALS") // secrets are not prefixed
+	if !ok {
+		token = os.Getenv("GAE_CREDENTIALS") // secrets are not prefixed
+	}
+	vargs.Token = token
+
 	// Strings
+	*workspace = os.Getenv("DRONE_WORKSPACE")
 	vargs.Project = os.Getenv("PLUGIN_PROJECT")
 	vargs.Action = os.Getenv("PLUGIN_ACTION")
-	*workspace = os.Getenv("DRONE_WORKSPACE")
-	vargs.Token = os.Getenv("GAE_CREDENTIALS") // secrets are not prefixed
 	vargs.Version = os.Getenv("PLUGIN_VERSION")
 	vargs.FlexImage = os.Getenv("PLUGIN_FLEX_IMAGE")
 	vargs.AppFile = os.Getenv("PLUGIN_APP_FILE")
