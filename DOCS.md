@@ -4,12 +4,12 @@
 
 `drone-gae` requires a Google service account and uses it's [JSON credential file][service-account] to authenticate.
 
-The plugin expects the credential in the `GAE_CREDENTIALS` environment variable.
+The plugin expects the credential in the `GOOGLE_CREDENTIALS` environment variable.
 See the [official documentation][docs-secrets] for uploading secrets.
 
 Either:
-- a) Name the secret `GAE_CREDENTIALS` and include it in the `secrets` block
-- b) Follow "Alternate Names" in the doc, setting the `target` to `GAE_CREDENTIALS`
+- a) Name the secret `GOOGLE_CREDENTIALS` and include it in the `secrets` block
+- b) Follow "Alternate Names" in the doc, setting the `target` to `GOOGLE_CREDENTIALS`
 
 [docs-secrets]: http://docs.drone.io/manage-secrets/
 [service-account]: https://cloud.google.com/iam/docs/service-accounts
