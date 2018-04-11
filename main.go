@@ -131,7 +131,7 @@ func wrapMain() error {
 	// This is inside the ephemeral plugin container, not on the host.
 	err = ioutil.WriteFile(keyPath, []byte(vargs.Token), 0600)
 	if err != nil {
-		return fmt.Errorf("error writing token file: %s\n", err)
+		return fmt.Errorf("error writing credentials file: %s\n", err)
 	}
 
 	// Warn if the keyfile can't be deleted, but don't abort. We're almost
@@ -140,7 +140,7 @@ func wrapMain() error {
 	defer func() {
 		err := os.Remove(keyPath)
 		if err != nil {
-			fmt.Printf("warning: error removing token file: %s\n", err)
+			fmt.Printf("warning: error removing credentials file: %s\n", err)
 		}
 	}()
 
@@ -261,13 +261,13 @@ func configFromEnv(vargs *GAE, workspace *string) error {
 func validateVargs(vargs *GAE) error {
 
 	if vargs.Token == "" {
-		return fmt.Errorf("missing required param: token")
+		return fmt.Errorf("missing required param: google_credentials")
 	}
 
 	if vargs.Project == "" {
 		vargs.Project = getProjectFromToken(vargs.Token)
 		if vargs.Project == "" {
-			return fmt.Errorf("project id not found in token or param")
+			return fmt.Errorf("project id not found in credentials or param")
 		}
 	}
 
