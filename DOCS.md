@@ -2,7 +2,7 @@
 
 ## Credentials
 
-`drone-gae` requires a Google service account and uses it's [JSON credential file][service-account] to authenticate.
+`drone-gae` requires a Google service account and uses its [JSON credential file][service-account] to authenticate.
 
 The plugin expects the credential in the `GAE_CREDENTIALS` environment variable.
 See the [official documentation][docs-secrets] for uploading secrets.
